@@ -22,15 +22,11 @@ export class AppComponent {
 	constructor(public overlayContainer: OverlayContainer) {
 		this.configureSideNav();
 		this.appList = [
-			{ id: 1, name: 'Ambitions', icon: 'trending_up' },
-			{ id: 2, name: 'Subjects', icon: 'code' },
-			{ id: 3, name: 'Institutions', icon: 'account_balance' },
-			{ id: 4, name: 'Colleges', icon: 'card_membership' },
-			{ id: 5, name: 'Books', icon: 'library_books' },
-			{ id: 6, name: 'Exams', icon: 'border_color' },
-			{ id: 7, name: 'Users', icon: 'verified_user' },
-			{ id: 8, name: 'Jobs', icon: 'build' },
-			{ id: 9, name: 'Feedback', icon: 'feedback' },
+			{ id: 1, name: 'App Name 1', icon: 'trending_up' },
+			{ id: 2, name: 'App Name 2', icon: 'code' },
+			{ id: 3, name: 'App Name 3', icon: 'account_balance' },
+			{ id: 4, name: 'App Name 4', icon: 'card_membership' },
+			{ id: 5, name: 'App Name 5', icon: 'library_books' }
 		];
 	}
 

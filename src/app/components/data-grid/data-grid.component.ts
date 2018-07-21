@@ -20,6 +20,7 @@ export class DataGridComponent implements OnInit {
 	dataSource: MatTableDataSource<any>;
 	selectedData: any;
 	frontVisible: boolean = true;
+	data: any;
 	constructor(private dataService: DataService, public dialog: MatDialog) {
 
 	}
@@ -44,6 +45,7 @@ export class DataGridComponent implements OnInit {
 			if (!results) {
 				return;
 			}
+			this.data = results;
 			this.dataSource = new MatTableDataSource(results);
 			this.dataSource.sort = this.sort;
 			this.dataSource.paginator = this.paginator;
@@ -59,9 +61,9 @@ export class DataGridComponent implements OnInit {
 	}
 
 	flip() {
-		debugger;
 		$('.card').toggleClass('flipped');
 		this.frontVisible = !this.frontVisible;
+		setTimeout(() => this.dataSource.paginator = this.paginator);
 	}
 
 	getDetails(user) {
