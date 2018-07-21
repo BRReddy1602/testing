@@ -1,0 +1,26 @@
+<mat-sidenav-container class="application-wrapper">
+	<mat-sidenav #sidenav [mode]="mode" [opened]="open">
+		<applications-list (onselect)="onAppSelect($event)" [applications]="appList"></applications-list>
+	</mat-sidenav>
+	<mat-sidenav-content>
+		<div class="sidenav-wrapper">
+			<div class="sidenav-header">
+				<mat-toolbar color="primary">
+					<button (click)="sidenav.toggle()" mat-button>
+						<mat-icon>menu</mat-icon>
+					</button>
+					<!-- This fills the remaining space of the current row -->
+					<span class="left-text"></span>
+					<!-- actions which you want to disply to right  -->
+					<span>
+						light mode
+						<mat-slide-toggle (change)="changeTheme()" [color]="primary" [checked]="otherThemes"></mat-slide-toggle>
+					</span>
+				</mat-toolbar>
+			</div>
+			<div class="sidenav-body">
+				<data-grid [selectedApp]="selectedApp"></data-grid>
+			</div>
+		</div>
+	</mat-sidenav-content>
+</mat-sidenav-container>

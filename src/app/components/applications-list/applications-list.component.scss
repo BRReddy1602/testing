@@ -1,0 +1,14 @@
+.logo {
+    font-size: 56px;
+    padding: 10px;
+    font-family: cursive;
+}
+
+.sidebar-item.mat-list-item {
+    cursor: pointer;
+    &:hover,
+    &.active {
+        background: gray;
+        color: white;
+    }
+}

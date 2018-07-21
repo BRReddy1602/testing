@@ -1,0 +1,15 @@
+:host {
+    height: 100%;
+    overflow: hidden;
+}
+
+.grid-wrapper {
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    .grid-body {
+        flex: 1;
+        overflow: auto;
+    }
+}

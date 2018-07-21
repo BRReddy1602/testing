@@ -1,0 +1,12 @@
+<div class="logo">
+Report Web	
+</div>
+<mat-list role="list">
+	<ng-container *ngFor="let item of applications">
+		<mat-list-item (click)="itemSelected(item)" class="sidebar-item" role="listitem" [class.active]="item.active">
+			<mat-icon>{{item.icon}}</mat-icon>&nbsp; {{item.name}}
+		</mat-list-item>
+		<mat-divider></mat-divider>
+	</ng-container>
+
+</mat-list>

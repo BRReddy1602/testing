@@ -1,0 +1,27 @@
+<div class="grid-wrapper">
+	<div class="grid-header flex-div">
+		<mat-form-field>
+			<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+		</mat-form-field>
+		<span class="flex-one"></span>
+		<button mat-button color="primary" (click)="openAddPopup()">
+			<mat-icon aria-label="plus">add_box</mat-icon>
+		</button>
+	</div>
+	<div class="grid-body">
+		<mat-table [dataSource]="dataSource" matSort>
+			<ng-container matColumnDef="{{item}}" *ngFor="let item of displayedColumns">
+				<mat-header-cell *matHeaderCellDef mat-sort-header>
+					{{item | uppercase}}
+				</mat-header-cell>
+				<mat-cell *matCellDef="let user">{{user[item]}}</mat-cell>
+			</ng-container>
+			<mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></mat-header-row>
+			<mat-row *matRowDef="let row; columns:displayedColumns"></mat-row>
+		</mat-table>
+	</div>
+	<div class="grid-footer">
+		<mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+		</mat-paginator>
+	</div>
+</div>
