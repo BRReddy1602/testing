@@ -10,7 +10,7 @@ import { ApplicationsListComponent } from './components/applications-list/applic
 import { DataGridComponent } from './components/data-grid/data-grid.component';
 import { DataService } from './services/data.service';
 import { PopupComponent } from './components/popup/popup.component';
-
+import * as $ from 'jquery';
 
 
 @NgModule({

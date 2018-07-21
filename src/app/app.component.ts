@@ -12,6 +12,7 @@ export class AppComponent {
 	open: boolean;
 	selectedApp: Object;
 	appList: any[];
+	height:any;
 
 	@HostListener('window:resize', ['$event'])
 	onResize(event) {
@@ -38,7 +39,9 @@ export class AppComponent {
 		// this.overlayContainer.getContainerElement().classList.toggle('light-theme');
 	}
 
-
+	ngAfterContentChecked() {
+		this.height = ($('body').height() - 239);
+	}
 	onAppSelect(item) {
 		this.selectedApp = item;
 	}

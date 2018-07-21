@@ -3,6 +3,9 @@ import { Observable } from 'rxjs/Observable';
 import { MatSort, MatSortable, MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
 import { DataService } from './../../services/data.service';
 import { PopupComponent } from './../popup/popup.component';
+import { runInThisContext } from 'vm';
+declare var jquery: any;
+declare var $: any;
 
 @Component({
 	selector: 'data-grid',
@@ -12,9 +15,11 @@ import { PopupComponent } from './../popup/popup.component';
 export class DataGridComponent implements OnInit {
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@Input() selectedApp: Object;
+	@Input() height: any;
 	displayedColumns = [];
 	dataSource: MatTableDataSource<any>;
+	selectedData: any;
+	frontVisible: boolean = true;
 	constructor(private dataService: DataService, public dialog: MatDialog) {
 
 	}
@@ -34,7 +39,7 @@ export class DataGridComponent implements OnInit {
 	}
 
 	getServerData() {
-		this.dataService.getUser(this.selectedApp).subscribe(results => {
+		this.dataService.getUser('').subscribe(results => {
 			let columns: string[];
 			if (!results) {
 				return;
@@ -47,19 +52,20 @@ export class DataGridComponent implements OnInit {
 				for (let key in results[0]) {
 					this.displayedColumns.push(key)
 				}
-
+				this.displayedColumns.push('actions');
+				//this.height = $('.grid-body').height() - 47;
 			}
 		});
 	}
 
-	private openAddPopup() {
-		console.log('open popup');
-		this.dialog.open(PopupComponent, {
-			data: {
-				selectedApp: this.selectedApp
-			}
-		});
+	flip() {
+		debugger;
+		$('.card').toggleClass('flipped');
+		this.frontVisible = !this.frontVisible;
 	}
 
-
+	getDetails(user) {
+		this.selectedData = user;
+		this.flip();
+	}
 }

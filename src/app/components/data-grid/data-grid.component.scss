@@ -11,5 +11,20 @@
     .grid-body {
         flex: 1;
         overflow: auto;
+        top: 57px;
+        position: absolute;
+        width: 100%;
     }
+    .grid-header.flex-div {
+        margin-left: 25px;
+    }
+    .grid-footer {
+        bottom: 60px;
+        position: absolute;
+        width: 100%;
+    }
+}
+
+.all-button {
+    margin-top: 11px;
 }

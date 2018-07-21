@@ -1,27 +1,49 @@
 <div class="grid-wrapper">
 	<div class="grid-header flex-div">
-		<mat-form-field>
+		<mat-form-field *ngIf="frontVisible">
 			<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 		</mat-form-field>
 		<span class="flex-one"></span>
-		<button mat-button color="primary" (click)="openAddPopup()">
-			<mat-icon aria-label="plus">add_box</mat-icon>
+		<button mat-button color="primary" class="all-button" (click)="flip()" *ngIf="!frontVisible">
+			View All
 		</button>
 	</div>
-	<div class="grid-body">
-		<mat-table [dataSource]="dataSource" matSort>
-			<ng-container matColumnDef="{{item}}" *ngFor="let item of displayedColumns">
-				<mat-header-cell *matHeaderCellDef mat-sort-header>
-					{{item | uppercase}}
-				</mat-header-cell>
-				<mat-cell *matCellDef="let user">{{user[item]}}</mat-cell>
-			</ng-container>
-			<mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></mat-header-row>
-			<mat-row *matRowDef="let row; columns:displayedColumns"></mat-row>
-		</mat-table>
-	</div>
-	<div class="grid-footer">
-		<mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
-		</mat-paginator>
+	<div class="card">
+		<div class="front" *ngIf="frontVisible">
+			<div class="grid-body" [style.max-height.px]="height">
+				<mat-table [dataSource]="dataSource" matSort [style.max-height.px]="height">
+					<ng-container matColumnDef="{{item}}" *ngFor="let item of displayedColumns">
+							<mat-header-cell *matHeaderCellDef mat-sort-header class='ellipsis' title="{{item}}">
+									<span class='ellipsis'>
+										<span *ngIf="item!== 'actions'" class='ellipsis'>
+											<b>{{item | uppercase}}</b>
+										</span>
+										<span *ngIf="item.field=== 'actions'" class='ellipsis'>
+											<b class='ellipsis'></b>
+										</span>
+									</span>
+								</mat-header-cell>
+						<mat-cell *matCellDef="let user" class='ellipsis'>
+							<span class='ellipsis' title="{{user[item]}}" *ngIf="item">{{user[item]}}</span>
+							<span *ngIf="item==='actions'" title="Details" (click)="getDetails(user)">
+								<button mat-button color="primary">
+									<mat-icon>chevron_right</mat-icon>
+								</button>
+							</span>
+						</mat-cell>
+					</ng-container>
+					<mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></mat-header-row>
+					<mat-row *matRowDef="let row; columns:displayedColumns"></mat-row>
+				</mat-table>
+			</div>
+			<div class="grid-footer">
+				<mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+				</mat-paginator>
+			</div>
+		</div>
+		<div class="back" *ngIf="!frontVisible">
+			Details of selected row
+			<pre>{{selectedData | json}}</pre>
+		</div>
 	</div>
 </div>
