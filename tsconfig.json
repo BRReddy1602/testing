@@ -13,7 +13,7 @@ Dropdown 1: <select ng-model="a" ng-change="changeValue()">
     <option ng-repeat="value in values" value="{{value}}">{{value}}</option>
   </select>
   Dropdown 2: <select ng-model="b">
-<option ng-repeat="value2 in values" value="value" ng-if="a!=value2">{{value2}}</option>
+    <option ng-repeat="value2 in values" value="{{value}}" ng-if="a!=value2">{{value2}}</option>
   </select>
 </div>
 
@@ -23,6 +23,7 @@ app.controller('myCtrl', function($scope) {
 $scope.values = [1,2,3,4];
     $scope.changeValue = function() {
         console.log($scope.a);
+        $scope.b = '';
     };
 });
 </script>
