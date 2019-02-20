@@ -1,19 +1,31 @@
-{
-  "compileOnSave": false,
-  "compilerOptions": {
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ]
-  }
-}
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style>
+	select{
+		width:50px;
+	}
+</style>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+Dropdown 1: <select ng-model="a" ng-change="changeValue()">
+    <option ng-repeat="value in values" value="{{value}}">{{value}}</option>
+  </select>
+  Dropdown 2: <select ng-model="b">
+<option ng-repeat="value2 in values" value="value" ng-if="a!=value2">{{value2}}</option>
+  </select>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+$scope.values = [1,2,3,4];
+    $scope.changeValue = function() {
+        console.log($scope.a);
+    };
+});
+</script>
+
+</body>
+</html>
